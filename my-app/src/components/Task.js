@@ -5,10 +5,13 @@ const Task = ({task, onDelete, onToggle}) => {
         <div className={`task ${task.reminder ? 'reminder' : ''}`} onDoubleClick={()=>onToggle(task.id)}>
             <h3>{task.text}{''}
                 <FaTimes style={{color:'red', cursor:'pointer'}} 
-                onClick={()=> onDelete(task.id)}/> 
-            </h3>
+                onClick={()=> onDelete(task.id)}/>                     
+            </h3>                                                               
             <p>{task.day}</p>
-        </div>
+        </div>                                     // by mistake, i added an onToggle={onToggle} in FaTimes, 
+                                                   // that make the onDoubleClick ignore them. Also
+                                                   //if you say onClick insted of onDobClick, 
+                                                   //it ignores the FaTimes Click, and so the removing of Task
     )
 }
 
