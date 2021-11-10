@@ -8,33 +8,40 @@ function App() {
       id: 1,
       text:'Én magyarorzagban vagyok',
       day:' feb 7 2023',
-      remineder:false,
+      reminder: true,
     },
     {
       id: 2,
       text:'Én magyarorzagban vagyok',
       day:' feb 7 2023',
-      remineder:false,
+      reminder:false,
     },
     {
       id: 3,
       text:'Én magyarorzagban vagyok',
       day:' feb 7 2023',
-      remineder:false,
+      reminder:false,
     },
   ])
   // --------------Delete task
   const deleteTask = (id) =>{
     setTasks(tasks.filter((task)=>task.id !== id))      //filter filters the ID and removes it
   }
-  
+  //--------------Toggle reminder
+  const toggleReminder= (id)=>{
+    setTasks(tasks.map((task) => task.id=== id ?
+    {
+      ...task, reminder: !task.reminder
+    }
+    : task))
+  }
 
   return (
     <div className="container">
       <Header />
       {
         tasks.length > 0 ? (
-          <Tasks tasks={tasks} onDelete= {deleteTask} />)  
+          <Tasks tasks={tasks} onDelete= {deleteTask} onToggle={toggleReminder}/>)  
         : 
           ('no tasks to show')
       }
