@@ -23,10 +23,21 @@ function App() {
       remineder:false,
     },
   ])
+  // --------------Delete task
+  const deleteTask = (id) =>{
+    setTasks(tasks.filter((task)=>task.id !== id))      //filter filters the ID and removes it
+  }
+  
+
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks}/>
+      {
+        tasks.length > 0 ? (
+          <Tasks tasks={tasks} onDelete= {deleteTask} />)  
+        : 
+          ('no tasks to show')
+      }
     </div>
   );
 }
